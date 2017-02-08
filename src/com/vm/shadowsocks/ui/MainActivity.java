@@ -292,10 +292,10 @@ public class MainActivity extends Activity implements
             });
             return;
         }
-        spf.edit().putString(SERVER_NAME, mEditServer.getText().toString());
-        spf.edit().putString(REMOTE_PORT, mEditPort.getText().toString());
-        spf.edit().putString(PASSWORD, mEditPassword.getText().toString());
-        spf.edit().putInt(ENCRYPT_METHOD, mSpinner.getSelectedItemPosition());
+        spf.edit().putString(SERVER_NAME, mEditServer.getText().toString()).commit();
+        spf.edit().putString(REMOTE_PORT, mEditPort.getText().toString()).commit();
+        spf.edit().putString(PASSWORD, mEditPassword.getText().toString()).commit();
+        spf.edit().putInt(ENCRYPT_METHOD, mSpinner.getSelectedItemPosition()).commit();
         //textViewLog.setText("");
         GL_HISTORY_LOGS = null;
         onLogReceived("starting...");

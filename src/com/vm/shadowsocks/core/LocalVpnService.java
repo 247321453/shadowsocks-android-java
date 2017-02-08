@@ -283,7 +283,7 @@ public class LocalVpnService extends VpnService implements Runnable {
                         session.LastNanoTime = System.nanoTime();
                         session.PacketSent++;//注意顺序
 
-                        int tcpDataSize = ipHeader.getDataLength() - tcpHeader.getHeaderLength();
+                        /*int tcpDataSize = ipHeader.getDataLength() - tcpHeader.getHeaderLength();
                         if (session.PacketSent == 2 && tcpDataSize == 0) {
                             return;//丢弃tcp握手的第二个ACK报文。因为客户端发数据的时候也会带上ACK，这样可以在服务器Accept之前分析出HOST信息。
                         }
@@ -297,7 +297,7 @@ public class LocalVpnService extends VpnService implements Runnable {
                             } else {
                                 System.out.printf("No host name found: %s", session.RemoteHost);
                             }
-                        }
+                        }*/
 
                         // 转发给本地TCP服务器
                         ipHeader.setSourceIP(ipHeader.getDestinationIP());
@@ -306,7 +306,7 @@ public class LocalVpnService extends VpnService implements Runnable {
 
                         CommonMethods.ComputeTCPChecksum(ipHeader, tcpHeader);
                         m_VPNOutputStream.write(ipHeader.m_Data, ipHeader.m_Offset, size);
-                        session.BytesSent += tcpDataSize;//注意顺序
+                        //session.BytesSent += tcpDataSize;//注意顺序
                         m_SentBytes += size;
                     }
                 }

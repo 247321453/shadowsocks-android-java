@@ -41,7 +41,7 @@ public class ProxyConfig {
     public ArrayList<Config> m_ProxyList;
     HashMap<String, Boolean> m_DomainMap;
 
-    public boolean globalMode = false;
+    public boolean globalMode = true;
 
     int m_dns_ttl;
     String m_welcome_info;
@@ -304,7 +304,7 @@ public class ProxyConfig {
         int lineNumber = 0;
         for (String line : lines) {
             lineNumber++;
-            String[] items = line.split("\\s+");
+            String[] items = line.trim().split("\\s+");
             if (items.length < 2) {
                 continue;
             }
