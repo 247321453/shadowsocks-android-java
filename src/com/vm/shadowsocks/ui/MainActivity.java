@@ -28,14 +28,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.vm.shadowsocks.R;
 import com.vm.shadowsocks.core.LocalVpnService;
 import com.vm.shadowsocks.core.ProxyConfig;
 
 public class MainActivity extends Activity implements
-        View.OnClickListener,
         OnCheckedChangeListener,
         LocalVpnService.onStatusChangedListener {
 
@@ -70,7 +67,6 @@ public class MainActivity extends Activity implements
 
         scrollViewLog = (ScrollView) findViewById(R.id.scrollViewLog);
         //textViewLog = (TextView) findViewById(R.id.textViewLog);
-        findViewById(R.id.ProxyUrlLayout).setOnClickListener(this);
 
         textViewProxyUrl = (TextView) findViewById(R.id.textViewProxyUrl);
         String ProxyUrl = readProxyUrl();
@@ -100,11 +96,11 @@ public class MainActivity extends Activity implements
 
     void initConfig () {
         spf = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
-        String name = spf.getString(SERVER_NAME, "");
-        String port = spf.getString(REMOTE_PORT, "");
-        String password = spf.getString(PASSWORD, "");
+        String name = spf.getString(SERVER_NAME, "107.191.52.210");
+        String port = spf.getString(REMOTE_PORT, "104");
+        String password = spf.getString(PASSWORD, "549322751");
         String[] methods = getResources().getStringArray(R.array.encrypt);
-        int methodId = spf.getInt(ENCRYPT_METHOD, 0);
+        int methodId = spf.getInt(ENCRYPT_METHOD, 1);
         
         if (!name.isEmpty()) {
             mEditServer.setText(name);
@@ -164,40 +160,6 @@ public class MainActivity extends Activity implements
         } catch (Exception e) {
             return false;
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (switchProxy.isChecked()) {
-            return;
-        }
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.config_url)
-                .setItems(new CharSequence[]{
-                        getString(R.string.config_url_scan),
-                        getString(R.string.config_url_manual)
-                }, new OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (i) {
-                            case 0:
-                                scanForProxyUrl();
-                                break;
-                            case 1:
-                                showProxyUrlInputDialog();
-                                break;
-                        }
-                    }
-                })
-                .show();
-    }
-
-    private void scanForProxyUrl() {
-        new IntentIntegrator(this)
-                .setResultDisplayDuration(0)
-                .setPrompt(getString(R.string.config_url_scan_hint))
-                .initiateScan(IntentIntegrator.QR_CODE_TYPES);
     }
 
     private void showProxyUrlInputDialog() {
@@ -315,19 +277,6 @@ public class MainActivity extends Activity implements
             }
             return;
         }
-
-        IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-        if (scanResult != null) {
-            String ProxyUrl = scanResult.getContents();
-            if (isValidUrl(ProxyUrl)) {
-                setProxyUrl(ProxyUrl);
-                textViewProxyUrl.setText(ProxyUrl);
-            } else {
-                Toast.makeText(MainActivity.this, R.string.err_invalid_url, Toast.LENGTH_SHORT).show();
-            }
-            return;
-        }
-
         super.onActivityResult(requestCode, resultCode, intent);
     }
 

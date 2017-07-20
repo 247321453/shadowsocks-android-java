@@ -24,9 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.google.zxing.client.android.CaptureActivity">
-            
-        </activity> 
         <service
             android:name="com.vm.shadowsocks.core.LocalVpnService"
             android:permission="android.permission.BIND_VPN_SERVICE">
