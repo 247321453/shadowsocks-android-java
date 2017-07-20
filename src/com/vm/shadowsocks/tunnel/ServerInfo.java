@@ -3,6 +3,7 @@ package com.vm.shadowsocks.tunnel;
 import android.net.Uri;
 
 public class ServerInfo {
+    public String name;
     public String host;
     public int port;
     public String password;
@@ -15,7 +16,7 @@ public class ServerInfo {
         return isValidUrl(getProxyUrl());
     }
 
-    private boolean isValidUrl(String url) {
+    public static boolean isValidUrl(String url) {
         try {
             if (url == null || url.isEmpty())
                 return false;

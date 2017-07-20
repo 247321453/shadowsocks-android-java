@@ -77,7 +77,7 @@ public class Rc4Md5 implements ICrypt {
     }
 
     // 1.3 置换
-    private void swap(int[] s, int i, int j) {
+    private void swap(Integer[] s, int i, int j) {
         Integer mTemp = s[i];
         s[i] = s[j];
         s[j] = mTemp;

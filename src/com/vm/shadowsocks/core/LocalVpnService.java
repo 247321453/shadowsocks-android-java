@@ -18,7 +18,7 @@ import com.vm.shadowsocks.tcpip.CommonMethods;
 import com.vm.shadowsocks.tcpip.IPHeader;
 import com.vm.shadowsocks.tcpip.TCPHeader;
 import com.vm.shadowsocks.tcpip.UDPHeader;
-import com.vm.shadowsocks.ui.MainActivity;
+import com.vm.shadowsocks.ui.HomeActivity;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -385,7 +385,7 @@ public class LocalVpnService extends VpnService implements Runnable {
             }
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         builder.setConfigureIntent(pendingIntent);
 
