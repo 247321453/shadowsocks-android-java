@@ -1,7 +1,5 @@
 package com.vm.shadowsocks.ui;
 
-import java.util.Calendar;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,7 +16,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
@@ -31,6 +28,8 @@ import android.widget.Toast;
 import com.vm.shadowsocks.R;
 import com.vm.shadowsocks.core.LocalVpnService;
 import com.vm.shadowsocks.core.ProxyConfig;
+
+import java.util.Calendar;
 
 public class MainActivity extends Activity implements
         OnCheckedChangeListener,
